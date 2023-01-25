@@ -1,4 +1,5 @@
 import { FunctionComponent, useState } from "react";
+import LineGraph from "./LineGraph";
 
 // Useless Component: does nothing
 /**
@@ -8,11 +9,42 @@ import { FunctionComponent, useState } from "react";
  * [param3: Type]: does nothing
  */
 export const UselessComponent: FunctionComponent = () => {
-    const [state, setState] = useState(false);
+    const [data, setData] = useState<number[]>([3,2,4]);
+
+    const range = (min: number, max: number): Array<number> => {
+        const arr = [];
+        for(let i = min; i <= max; i ++) {
+          arr.push(i);
+        }
+    
+        return arr;
+    };
+
+    const input = {
+        labels: range(1,data.length),
+        datasets: [
+            {
+                label: 'string', 
+                data: data, 
+                borderColor: 'rgb(255,0,0)', 
+                backrgoundColor: 'rgb(0,255,0)'
+            }
+        ]
+    };
 
     return (
-        <div onClick={() => setState(!state)} className={` ${state ? "text-3xl bg-red-300" : "text-2xl bg-blue-300"} font-bold underline`}>
-            <span>I am {state ? "big" : "small"} text. Click me to change me.</span>
+        <div style={{width: "50%"}}>
+            Click me to add a random data point from 1-10: <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => {
+                // ignore the fact that this code is unreadable for now...
+                const currentData = data;
+
+                currentData.push(Math.round(Math.random()*10));
+
+                setData([...currentData]);
+            }}>Add</button>
+            <LineGraph data={input}/>
+
+            <p>{data.join(" ")}</p>
         </div>
     );
 };
