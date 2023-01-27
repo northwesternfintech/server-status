@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FC, useState } from "react";
 import LineGraph from "./LineGraph";
 
 // Useless Component: does nothing
@@ -8,7 +8,7 @@ import LineGraph from "./LineGraph";
  * [param2: Type]: does nothing
  * [param3: Type]: does nothing
  */
-export const UselessComponent: FunctionComponent = () => {
+export const UselessComponent: FC = () => {
     const [data, setData] = useState<number[]>([3,2,4]);
 
     const range = (min: number, max: number): Array<number> => {
