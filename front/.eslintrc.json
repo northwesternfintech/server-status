@@ -1,0 +1,16 @@
+{
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "root": true,
+  "rules": {
+    "semi": "error",
+    "constructor-super": "error",
+    "for-direction": "error",
+    //"arrow-body-style": "warn",
+    "camelcase": "error",
+    "curly": "warn",
+    "eqeqeq": "warn",
+    "eol-last": "error"
+  }
+}
