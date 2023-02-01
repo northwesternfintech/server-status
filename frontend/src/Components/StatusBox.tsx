@@ -1,10 +1,9 @@
 import { FC, useEffect, useState } from "react";
 import Color from "../Types/Color";
-import D3Line from "./D3Line";
 import axios, { AxiosResponse } from "axios";
 import ReloadIcon from '../Reload.png';
 
-export const StatusBox: FC<{endpoint: string, label: string}> = ({endpoint, label}) => {
+export const StatusBox: FC<{endpoint: string, label: string, DataView: React.FC<{data: number[], options: any}>}> = ({endpoint, label, DataView}) => {
     const [data, setData] = useState<number[]>([100]);
     const [status, setStatus] = useState(1); // 1 = not ok, 2 = questionable, 3 = ok
 
@@ -38,7 +37,7 @@ export const StatusBox: FC<{endpoint: string, label: string}> = ({endpoint, labe
                 <img className="cursor-pointer m-1" onClick={() => reload()} src={ReloadIcon} width={20}/>
                 <div className={`m-1 font-black text-2xl ${color}`}>•</div>
             </div>
-            <D3Line data={data} options={{
+            <DataView data={data} options={{
                 height: 250,
                 width: 900,
                 inset: 30,
