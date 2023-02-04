@@ -1,23 +1,8 @@
 // Authored by ChatGPT and Andrew Li
 // Comments by Andrew Li
 
-import React, { useEffect, useRef, useState } from 'react';
-import Color from '../Types/Color';
-
-type VerticalProps = {
-  data: number[],
-  options?: Options,
-};
-
-type Options = {
-    height: number,
-    width: number,
-    unitRadius: number,
-    unitPadding: number,
-    errorColor: Color,
-    warningColor: Color,
-    goodColor: Color
-};
+import React from 'react';
+import Options from '../Types/Option';
 
 const getColor = (e: number): string => { // numbers can be adjusted
     if(e >= 97) {
@@ -29,12 +14,12 @@ const getColor = (e: number): string => { // numbers can be adjusted
     }
 };
 
-const VerticalGraph: React.FC<VerticalProps> = ({ data, options }) => {
+const VerticalGraph: React.FC<{ data: number[], options: Options }> = ({ data, options }) => {
   return (
     <div className="flex flex-col border-2 p-1 justify-center items-center">
-        <div className={`flex flex-row w-[${options?.width}]`}>
-            {data.map((e) => (
-                <div className={`m-0.5 py-8 px-1 ${getColor(e)} rounded-sm`}></div>
+        <div className={`flex flex-row w-[${options.width}]`}>
+            {data.map((e, index) => (
+                <div key={index+" "+e} className={`m-0.5 py-8 px-1 ${getColor(e)} rounded-sm`}></div>
             ))}
         </div>
         <div className='text-gray text-sm'>

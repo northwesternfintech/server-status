@@ -6,22 +6,7 @@ import * as d3 from 'd3';
 import 'd3-axis';
 import 'd3-shape';
 import Color from '../Types/Color';
-
-type LineGraphProps = {
-  data: number[],
-  options?: Options,
-};
-
-type Options = {
-    height: number,
-    width: number,
-    inset: number,
-    rounded: number,
-    borderColor: Color,
-    borderThickness: number,
-    strokeColor: Color,
-    strokeThickness: number
-};
+import { Options } from '../Types/Option';
 
 const DEFAULT_OPTIONS = {
     height: 500,
@@ -34,7 +19,7 @@ const DEFAULT_OPTIONS = {
     strokeThickness: 2
 };
 
-const LineGraph: React.FC<LineGraphProps> = ({ data, options }) => {
+const LineGraph: React.FC<{ data: number[], options: Options }> = ({ data, options }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const [width, setWidth] = useState(options?.width || DEFAULT_OPTIONS.width);
   const [opts, setOpts] = useState<Options>(options || DEFAULT_OPTIONS);
