@@ -9,7 +9,7 @@ import useSWR from 'swr';
  * CONFIG
  */
 
-const REFRESH_INTERVAL_MS = 60000; // refersh every 60 seconds
+const REFRESH_INTERVAL_MS = 1000; // refersh every ? ms
 
 // end config
 
@@ -20,11 +20,27 @@ export const StatusBox: FC<{endpoint: string, label: string, DataView: React.FC<
     const [status, setStatus] = useState(0);
 
     if(error) {
-        setStatus(3);
+        return (
+            <div className="flex flex-col p-4 items-center justify-center w-2/4">
+                <div className="font-bold flex flex-row w-full items-center justify-center">
+                    <div className="m-1">{label}</div>
+                    <img className="cursor-pointer m-1" onClick={() => reload()} src={ReloadIcon} width={20}/>
+                    <div className={`m-1 font-black text-2xl text-red-600`}>•</div>
+                </div>
+            </div>
+        );
     }
 
     if(isLoading) {
-        setStatus(2);
+        return (
+            <div className="flex flex-col p-4 items-center justify-center w-2/4">
+                <div className="font-bold flex flex-row w-full items-center justify-center">
+                    <div className="m-1">{label}</div>
+                    <img className="cursor-pointer m-1" onClick={() => reload()} src={ReloadIcon} width={20}/>
+                    <div className={`m-1 font-black text-2xl text-yellow-500`}>•</div>
+                </div>
+            </div>
+        );
     }
 
     const reload = () => {
@@ -43,7 +59,7 @@ export const StatusBox: FC<{endpoint: string, label: string, DataView: React.FC<
                 <img className="cursor-pointer m-1" onClick={() => reload()} src={ReloadIcon} width={20}/>
                 <div className={`m-1 font-black text-2xl ${color}`}>•</div>
             </div>
-            {!error && !isLoading ? <DataView data={data} options={{
+            <DataView data={data} options={{
                 height: 250,
                 width: 900,
                 inset: 30,
@@ -52,7 +68,7 @@ export const StatusBox: FC<{endpoint: string, label: string, DataView: React.FC<
                 borderThickness: 0,
                 strokeColor: Color.fromHex("#414141"),
                 strokeThickness: 2
-            }}/> : ""}
+            }}/>
         </div>
     );
 };
