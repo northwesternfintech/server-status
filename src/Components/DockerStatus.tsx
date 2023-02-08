@@ -33,10 +33,10 @@ const DockerRow: React.FC<{data: DataType, showNotesCallback: (data: DataType) =
 
     return (
         <tr>
-            <td>{data.dockerId}</td>
+            <td className="hidden md:table-cell">{data.dockerId}</td>
             <td>{data.personName}</td>
-            <td><StatusIcon status={data.status}/></td>
-            <td>{getMinsSecs(data.startedAt)}</td>
+            <td className="hidden sm:table-cell"><StatusIcon status={data.status}/></td>
+            <td className="hidden md:table-cell">{getMinsSecs(data.startedAt)}</td>
             <td colSpan={2}>
                 <div onClick={() => showNotesCallback(data)} className="cursor-pointer text-blue-600 bg-blue-200 rounded-lg px-2 py-1 font-bold text-center">Show Notes</div>
             </td>
@@ -84,10 +84,10 @@ export const DockerStatus: React.FC = () => {
         return (
             <table className="dockerStatusTable">
                 <thead>
-                    <th className="text-left">Docker ID</th>
+                    <th className="text-left hidden md:table-cell">Docker ID</th>
                     <th className="text-left">Runner Name</th>
-                    <th className="text-left">Status</th>
-                    <th className="text-left">Time Since Start</th>
+                    <th className="text-left hidden sm:table-cell">Status</th>
+                    <th className="text-left hidden md:table-cell">Time Since Start</th>
                     <th className="text-left">View Debug Notes</th>
                     <th onClick={() => setForceReload(!forceReload)} className="cursor-pointer text-right">&#8634;</th>
                 </thead>
