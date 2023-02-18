@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+/**
+ * Change these types later when a real API is created
+ */
 type ContainerInfo = {
     dockerId: string,
     personName: string,
@@ -14,6 +17,11 @@ type DebugNote = {
     type: number
 };
 
+/**
+ * Shows status text with background color
+ * @param param0 status - 1 = ok, 2 = loading, 3 = error, other = ??
+ * @returns 
+ */
 const StatusIcon: React.FC<{status: number}> = ({status}) => {
     switch(status) {
         case 1:
@@ -75,6 +83,9 @@ export const DockerStatus: React.FC = () => {
      */
     const [forceReload, setForceReload] = useState(false);
 
+    /**
+     * Some fake data...
+     */
     const FAKE_DATA: Array<ContainerInfo> = [
         {startedAt: new Date(2023, 1, 4), dockerId: "123", personName: "Bob", status: 1, debugNotes: [{date: new Date(), msg: "Note 1", type: 1}, {date: new Date(), msg: "Note 2", type: 1}]}, 
         {startedAt: new Date(2023, 1, 1), dockerId: "54871524", personName: "Dead Person", status: 2, debugNotes: [{date: new Date(), msg: "Note 3", type: 2}, {date: new Date(), msg: "Note 4", type: 3}]},
