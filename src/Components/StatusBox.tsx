@@ -15,7 +15,7 @@ const REFRESH_INTERVAL_MS = 1000; // refersh every ? ms
 
 const fetcher = (endpoint: string) => axios.get(endpoint).then(res => res.data);
 
-export const StatusBox: FC<{endpoint: string, label: string, DataView: React.FC<{data: number[], options: Options}>}> = ({endpoint, label, DataView}) => {
+export const StatusBox: FC<{endpoint: string, label: string, DataView: React.FC<{data: any[], options: Options}>}> = ({endpoint, label, DataView}) => {
     const { data, error, isLoading, mutate } = useSWR(endpoint, fetcher, { refreshInterval: REFRESH_INTERVAL_MS });
     const [status, setStatus] = useState(0);
 
@@ -49,6 +49,17 @@ export const StatusBox: FC<{endpoint: string, label: string, DataView: React.FC<
             setStatus(1);
         });
     };
+
+    // const formatData = (data: Array<{'timestamp': number, 'cpu_percent': number}>): number[] => {
+    //     // cannot assume this is sorted, so we sort by timestamp
+    //     data.sort((a,b) => a.timestamp - b.timestamp);
+    //     const output: number[] = [];
+    //     data.forEach(e => {
+    //         output.push(e.cpu_percent);
+    //     });
+
+    //     return output;
+    // };
 
     const color = status === 3 ? "text-red-600" : status === 2 ? "text-yellow-500" : "text-green-500";
 

@@ -1,3 +1,11 @@
+.hoverClass .hoverBox {
+  visibility: hidden;
+}
+
+.hoverClass:hover .hoverBox {
+  visibility: visible;
+}
+
 .dockerStatusTable {
   width: clamp(50vw, 50rem, 80vw);
 }

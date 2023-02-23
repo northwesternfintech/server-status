@@ -75,7 +75,7 @@ const LineGraph: React.FC<{ data: number[], options: Options }> = ({ data, optio
             .range([OPTIONS.inset, OPTIONS.width - OPTIONS.inset]);
     
         const yScale = d3.scaleLinear<number, number>()
-            .domain([100, 89])
+            .domain([Math.max(...filteredData), 0])
             .range([OPTIONS.inset, OPTIONS.height - OPTIONS.inset]);
     
         const line = d3.line<number>()
