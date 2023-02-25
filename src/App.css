@@ -1,3 +1,7 @@
+.flash-anim-class {
+  animation: softpulse 1s infinite;
+}
+
 .hoverClass .hoverBox {
   visibility: hidden;
 }
@@ -36,5 +40,14 @@
   }
   50% {
     @apply bg-gray-500;
+  }
+}
+
+@keyframes softpulse {
+  0%, 100% {
+    @apply bg-gray-400;
+  }
+  70% {
+    @apply bg-gray-300;
   }
 }

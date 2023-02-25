@@ -27,6 +27,16 @@ export const StatusBox: FC<{endpoint: string, label: string, DataView: React.FC<
                     <img className="cursor-pointer m-1" onClick={() => reload()} src={ReloadIcon} width={20}/>
                     <div className={`m-1 font-black text-2xl text-red-600`}>•</div>
                 </div>
+                <div className="flex flex-col border-2 p-1 justify-center items-center">
+                    <div className={`flex flex-row`}>
+                        {[...Array(20).keys()].map(() => 
+                            (<div className={`m-0.5 py-8 px-[0.3rem] bg-red-500 rounded-sm hoverClass`}></div>)
+                        )}
+                    </div>
+                    <div className='text-gray text-sm'>
+                        Error!
+                    </div>
+                </div>
             </div>
         );
     }
@@ -38,6 +48,16 @@ export const StatusBox: FC<{endpoint: string, label: string, DataView: React.FC<
                     <div className="m-1">{label}</div>
                     <img className="cursor-pointer m-1" onClick={() => reload()} src={ReloadIcon} width={20}/>
                     <div className={`m-1 font-black text-2xl text-yellow-500`}>•</div>
+                </div>
+                <div className="flex flex-col border-2 p-1 justify-center items-center">
+                    <div className={`flex flex-row`}>
+                        {[...Array(20).keys()].map(() => 
+                            (<div className={`m-0.5 py-8 px-[0.3rem] flash-anim-class rounded-sm hoverClass`}></div>)
+                        )}
+                    </div>
+                    <div className='text-gray text-sm'>
+                        Loading...
+                    </div>
                 </div>
             </div>
         );
