@@ -1,6 +1,3 @@
-// Authored by ChatGPT and Andrew Li
-// Comments by Andrew Li
-
 import React from 'react';
 import Options from '../Types/Option';
 
