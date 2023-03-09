@@ -126,7 +126,7 @@ export const DockerStatus: React.FC = () => {
      * If show notes, show notes for active docker container. If not, show all containers.
      */
     if(notes) { // if showing notes, return all notes
-        return (<table className="dockerStatusTable">
+        return (<table className="dockerStatusTable m-1">
             <thead>
                 <th className="text-left hidden sm:table-cell"></th>
                 <th className="text-left">Time</th>
@@ -150,7 +150,7 @@ export const DockerStatus: React.FC = () => {
         </table>);
     } else { // If not showing notes, return main interface
         return (
-            <table className="dockerStatusTable">
+            <table className="dockerStatusTable m-1">
                 <thead>
                     <th className="text-left">Runner Name</th>
                     <th className="text-left hidden md:table-cell">Docker ID</th>
